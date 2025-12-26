@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.title}}</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        * {
+            margin: 2px;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    <h1>hi</h1>
+
+    <h2>data:</h2>
+    {{range .dt}}
+    <h2 class="item" style="border: 2px gray dotted; border-radius: 5px;width: fit-content;">{{.Id}} {{.Name}}</h2>
+    {{end}}
+    
+    <form action="/add" method="POST">
+        <input type="text" id="aname" name="aname" required> <br>
+        <button type="submit">add</button>
+    </form>
+    
+    <form action="/del" method="POST">
+        <input type="number" id="id" name="id" required> <br>
+        <button type="submit">del</button>
+    </form>
+
+    <input type="file" id="fileup" name="fileup" required> <br>
+    <button onclick="upload()">upload</button> <br>
+
+    <select name="filedw" id="filedw">
+        {{range .fs}}
+        <option value="{{.}}">{{.}}</option>
+        {{end}}
+    </select>
+    <button onclick="download()">download</button>
+
+    <script>
+        async function upload() {
+            if (document.getElementById("file").files.length == 0) {
+                return
+            }
+            const f = document.getElementById("file").files[0]
+            // const nm = f.name
+            const form = new FormData()
+            form.append('file',f)
+            // form.append('name',nm)
+            const res = fetch("/fileup",{method:"POST",body:form})
+        }
+
+        async function download() {
+            window.location.href = "/filedw/"+document.getElementById("filedw").value
+        }
+    </script>
+</body>
+</html>
