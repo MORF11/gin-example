@@ -45,6 +45,7 @@
     <script>
         async function upload() {
             if (document.getElementById("fileup").files.length == 0) {
+                console.log(document.getElementById("fileup").files.length)
                 return
             }
             const f = document.getElementById("fileup").files[0]
