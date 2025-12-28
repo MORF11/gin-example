@@ -1,5 +1,5 @@
 package main
-
+// perepisat bd na postgre dlya leapcell 
 import (
 	"fmt"
 

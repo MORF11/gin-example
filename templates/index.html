@@ -44,10 +44,10 @@
 
     <script>
         async function upload() {
-            if (document.getElementById("file").files.length == 0) {
+            if (document.getElementById("fileup").files.length == 0) {
                 return
             }
-            const f = document.getElementById("file").files[0]
+            const f = document.getElementById("fileup").files[0]
             // const nm = f.name
             const form = new FormData()
             form.append('file',f)
